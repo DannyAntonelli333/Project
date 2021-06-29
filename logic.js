@@ -6,8 +6,6 @@ var enHealth = 0;
 
 var enemy = "";
 
-var won = false;
-
 function start()
 {
     enemy = enemies[Math.floor(Math.random() * enemies.length)];
@@ -74,7 +72,6 @@ function wOl()
     {
         win = true;
         alert("You Won!");
-        won = true;
     }
     else if(health <= 0)
     {
@@ -100,13 +97,5 @@ function update()
     he.textContent = health + "/100";
 }
 
-function win()
-{
-    if(won)
-    {
-        var w = document.getElementById("win");
-        w.textContent = "You are now a winner";
-    }
-}
 
 start();
