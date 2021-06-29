@@ -29,6 +29,7 @@ function turn(sbo)
     if(sbo == "swing")
     {
         enHealth = enHealth - 20;
+        alert("You attacked!");
         enemyAttack();
         console.log("attack");
     }

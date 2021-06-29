@@ -41,9 +41,15 @@
     </div>
     <script src="logic.js"></script>
     <script type="text/javascript">
-        $("#attack").on("click", turn("swing"));
-        $("#block").on("click",turn("block"));
-        $("#observe").on("click",turn("observe"));
+        $("#attack").on("click", function(){
+            turn("swing");
+        });
+        $("#block").on("click", function(){
+            turn("block");
+        });
+        $("#observe").on("click", function(){
+            turn("observe");
+        });
     </script>
 </body>
 </html>
