@@ -2,11 +2,13 @@ var health = 100;
 
 var enemies = ["Skeleton", "Lich", "Dragon"];
 
+var enHealth = 0;
+
+var enemy = "";
+
 function start()
 {
-    var enemy = Math.floor(Math.random() * enemies.length);
-
-    var enHealth = 0;
+    enemy = enemies[Math.floor(Math.random() * enemies.length)];
 
     if(enemy == "Skeleton")
     {
@@ -24,21 +26,25 @@ function start()
 
 function turn(sbo)
 {
-    if(sbo == swing)
+    if(sbo == "swing")
     {
-        eneHealth = eneHealth - 20;
+        enHealth = enHealth - 20;
         enemyAttack();
+        console.log("attack");
     }
-    else if(sbo == block)
+    else if(sbo == "block")
     {
         alert("You blocked an attack!");
+        console.log("block");
     }
     else
     {
         alert("You are facing a " +enemy+ " that has " + enHealth + " health left");
         enemyAttack();
+        console.log("observe");
     }
     wOl();
+    
 }
 
 function enemyAttack()
@@ -61,3 +67,14 @@ function wOl()
 {
 
 }
+
+function update()
+{
+    var en = document.getElementById("enemy");
+    en.textContent = enemy;
+
+    var he = document.getElementById("health");
+    he.textContent = health;
+}
+
+start();
