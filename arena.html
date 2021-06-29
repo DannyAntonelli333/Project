@@ -38,6 +38,12 @@
                 <div class="btn btn-info btn-lg" id="observe">Observe</div>
             </div>
         </div>
+        <!--Win-->
+        <div class="row">
+            <div class="col-sm-4"> </div>
+            <div class="col-sm-4" id="win">Only for Winners</div>
+            <div class="col-sm-4"> </div>
+        </div>
     </div>
     <script src="logic.js"></script>
     <script type="text/javascript">
@@ -49,6 +55,9 @@
         });
         $("#observe").on("click", function(){
             turn("observe");
+        });
+        $("#win").on("click", function(){
+            win();
         });
     </script>
 </body>
