@@ -71,11 +71,21 @@ function wOl()
     if(enHealth <= 0)
     {
         win = true;
+        alert("You Won!");
     }
     else if(health <= 0)
     {
         loss = true;
+        alert("You Lost!");
+        var play = confirm("Play again?");
+        if(play)
+        {
+            health = 100;
+            start();
+            update();
+        }
     }
+    
 }
 
 function update()
