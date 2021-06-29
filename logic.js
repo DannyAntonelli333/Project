@@ -45,7 +45,7 @@ function turn(sbo)
         console.log("observe");
     }
     wOl();
-    
+    update();
 }
 
 function enemyAttack()
@@ -60,13 +60,22 @@ function enemyAttack()
     }
     else
     {
-        health = - 30;
+        health = health - 30;
     }
 }
 
 function wOl()
 {
-
+    var win = false;
+    var loss = false;
+    if(enHealth <= 0)
+    {
+        win = true;
+    }
+    else if(health <= 0)
+    {
+        loss = true;
+    }
 }
 
 function update()
@@ -75,7 +84,7 @@ function update()
     en.textContent = enemy;
 
     var he = document.getElementById("health");
-    he.textContent = health;
+    he.textContent = health + "/100";
 }
 
 start();
