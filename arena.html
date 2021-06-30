@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <!--Screen-->
-        <div class="row">
+        <div class="row spacer">
             <div class="col-sm-5">
                 <pre>
                     !
@@ -28,33 +28,56 @@
             <div class="col-sm-2">
                 <h3>VS</h3>
             </div>
-            <div class="col-sm-5" id="enemy">
-                <pre class="enemy">
-                    Your
-                    Oppoenent
+            <div class="col-sm-5">
+                <pre id="enemyPic">
                 </pre>
             </div>
         </div>
+        </div>
         <!--Health-->
-        <div class="row">
+        <div class="row spacer">
             <div class="col-sm-1"> </div>
-            <div class="col-sm-10" id="health">100/100</div>
+            <div class="col-sm-4" id="health">100/100</div>
             <div class="col-sm-1"> </div>
+            <div class="col-sm-4" id="enHealth">????</div>
         </div>
         <!--Buttons and Respons-->
-        <div class="row">
-            <div class="col-sm-4">
+        <div class="row spacer">
+            <div class="col-sm-3">
                 <div class="btn btn-danger btn-lg" id="attack">Attack</div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="btn btn-secondary btn-lg" id="block">Block</div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
+                <div class="btn btn-success btn-lg" id="heal">Potion</div>
+            </div>
+            <div class="col-sm-3">
                 <div class="btn btn-info btn-lg" id="observe">Observe</div>
             </div>
         </div>
-        <!--Win-->
+        <div class="row spacer">
+            <div class="col-sm-3">
+                This attack deals damage.
+            </div>
+            <div class="col-sm-3">
+                This blocks 2 attacks, but has limited uses.
+            </div>
+            <div class="col-sm-3">
+                This heals you, but has limited uses.
+            </div>
+            <div class="col-sm-3">
+                This identifies the enemy.
+            </div>
+        </div>
+        <!--Text Box for what happened-->
         <div class="row">
+            <div class="col-sm-2"> </div>
+            <div class="col-sm-8"><pre id="record"></pre></div>
+            <div class="col-sm-2"> </div>
+        </div>
+        <!--Win-->
+        <div class="row spacer">
             <div class="col-sm-4"> </div>
             <div class="col-sm-4" id="win"></div>
             <div class="col-sm-4"> </div>
@@ -71,6 +94,9 @@
         $("#observe").on("click", function(){
             turn("observe");
         });
+        $("#heal").on("click", function(){
+            turn("heal");
+        })
     </script>
 </body>
 </html>
