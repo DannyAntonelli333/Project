@@ -4,7 +4,7 @@ var shHealth = 50;
 
 var damage = 20;
 
-var heals = 1;
+var heals = 3;
 
 var enemies = ["Skeleton", "Lich", "Dragon"];
 
@@ -19,6 +19,8 @@ var enemy = "";
 var seen = false;
 
 var wins = 0;
+
+var isBlocking = false;
 
 function start()
 {
@@ -53,13 +55,29 @@ function turn(sbo)
         var text = document.getElementById("record");
         text.textContent += "You attacked! \r\n";
         enemyAttack();
-        console.log("attack");
     }
     else if(sbo == "block")
     {
-        var text = document.getElementById("record");
-        text.textContent += "You blocked an attack! \r\n";
-        console.log("block");
+        if(shHealth > 0)
+        {
+            if(isBlocking == false)
+            {
+                isBlocking = true;
+                var text = document.getElementById("record");
+                text.textContent += "You are now blocking! \r\n";
+            }
+            else
+            {
+                isBlocking = false;
+                var text = document.getElementById("record");
+                text.textContent += "You stopped blocking! \r\n";
+            }
+        }
+        else
+        {
+            var text = document.getElementById("record");
+            text.textContent += "Your shield is broken! \r\n";
+        }
     }
     else if(sbo == "heal")
     {
@@ -91,17 +109,41 @@ function turn(sbo)
 
 function enemyAttack()
 {
-    if(enemy == "Skeleton")
+    if(isBlocking == false)
     {
-        health = health - 10;
+        if(enemy == "Skeleton")
+        {
+            health = health - 10;
+        }
+        else if(enemy == "Lich")
+        {
+            health = health - 20;
+        }
+        else
+        {
+            health = health - 30;
+        }
     }
-    else if(enemy == "Lich")
+    if(isBlocking == true)
     {
-        health = health - 20;
+        if(enemy == "Skeleton")
+        {
+            shHealth = shHealth - 10;
+        }
+        else if(enemy == "Lich")
+        {
+            shHealth = shHealth - 10;
+        }
+        else
+        {
+            shHealth = shHealth - 10;
+        }
     }
-    else
+    if(shHealth == 0)
     {
-        health = health - 30;
+        isBlocking = false;
+        var text = document.getElementById("record");
+        text.textContent += "Your shield just broke! \r\n";
     }
 }
 
@@ -117,7 +159,7 @@ function wOl()
         whichEn++;
         if(wins == 3)
         {
-
+            $("#win").html("<a href=\"win.html\">You Win!</a>");
         }
         else
         {
@@ -155,47 +197,51 @@ function show()
     enP.textContent = "";
     if(enemy == "Skeleton")
     {
-        enP.textContent += "                .-.\r\n";
-        enP.textContent += "                (o.o)\r\n";
-        enP.textContent += "                |=|\r\n";
-        enP.textContent += "                __|__\r\n";
-        enP.textContent += "               //.=|=.\\\r\n";
-        enP.textContent += "               // .=|=. \\\r\n";
-        enP.textContent += "                 \\ .=|=. //\r\n";
-        enP.textContent += "                 \\(_=_)//\r\n";
-        enP.textContent += "                (:| |:)\r\n";
-        enP.textContent += "                || ||\r\n";
-        enP.textContent += "                () ()\r\n";
-        enP.textContent += "                || ||\r\n";
-        enP.textContent += "                || ||\r\n";
-        enP.textContent += "               ==' '==\r\n";
+        enP.textContent += "                .-. \r\n";
+        enP.textContent += "               (o.o) \r\n";
+        enP.textContent += "                |=| \r\n";
+        enP.textContent += "               __|__ \r\n";
+        enP.textContent += "             //.=|=.\\\\ \r\n";
+        enP.textContent += "            // .=|=. \\\\ \r\n";
+        enP.textContent += "            \\\\ .=|=. // \r\n";
+        enP.textContent += "             \\\\(_=_)// \r\n";
+        enP.textContent += "              (:| |:) \r\n";
+        enP.textContent += "               || || \r\n";
+        enP.textContent += "               () () \r\n";
+        enP.textContent += "               || || \r\n";
+        enP.textContent += "               || || \r\n";
+        enP.textContent += "              ==' '== \r\n";
     }
     else if(enemy == "Lich")
     {
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
+        enP.textContent += "                 /\\ \r\n";
+        enP.textContent += "                 || \r\n";
+        enP.textContent += "   ____ (((+))) _||_ \r\n";
+        enP.textContent += "  /.--.\  .-.  /.||.\\ \r\n";
+        enP.textContent += " /.,   \\(0.0)// || \\\\ \r\n";
+        enP.textContent += "/;` ;/\\ \\|m|//  ||  ;\\ \r\n";
+        enP.textContent += "|:   \\ \\__`:`____||__:| \r\n";
+        enP.textContent += "|:    \\__ \\T/ (@~)(~@)| \r\n";
+        enP.textContent += "|:    _/|     |\\_\\/  :| \r\n";
+        enP.textContent += "|:   /  |     |  \\   :| \r\n";
+        enP.textContent += "|'  /   |     |   \\  '| \r\n";
+        enP.textContent += " \\_/    |     |    \\_/  \r\n"
+        enP.textContent += "        |     |        \r\n"
+        enP.textContent += "        |_____| \r\n"
+        enP.textContent += "        |_____| \r\n"
     }
     else
     {
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
-        enP.textContent += "\r\n";
+        enP.textContent += "                    /     \\  \r\n";
+        enP.textContent += "                   ((     )) \r\n";
+        enP.textContent += "               ===  \\\\_v_//  === \r\n";
+        enP.textContent += "                 ====)_^_(==== \r\n";
+        enP.textContent += "                 ===/ O O \\=== \r\n";
+        enP.textContent += "                 = | /_ _\\ | = \r\n";
+        enP.textContent += "                =   \\/_ _\\/   = \r\n";
+        enP.textContent += "                     \\_ _/ \r\n";
+        enP.textContent += "                     (o_o) \r\n";
+        enP.textContent += "                      VwV \r\n";
     }
 }
 

@@ -4,11 +4,15 @@ body {
 }
 
 #record {
-    padding-top: 50px;
     border: 1px solid black;
     text-align: left;
 }
 
 .spacer{
     padding: 20px;
+}
+
+#enemyPic
+{
+    text-align: left;
 }
