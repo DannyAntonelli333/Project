@@ -28,7 +28,7 @@ function start()
 
     if(enemy == "Skeleton")
     {
-        enHealthT = 75;
+        enHealthT = 80;
         enHealth = enHealthT
     }
     else if(enemy == "Lich")
@@ -41,8 +41,8 @@ function start()
         enHealthT = 200;
         enHealth = enHealthT
     }
-    var en = document.getElementById("enemy");
-        en.textContent = "????";
+    var en = document.getElementById("enemyPic");
+        en.textContent = "";
 
     seen = false;
 }
@@ -83,10 +83,10 @@ function turn(sbo)
     {
         if(heals > 0)
         {
-        var text = document.getElementById("record");
-        text.textContent += "You drank a potion and gained health! \r\n";
-        health += 50;
-        heals--;
+            var text = document.getElementById("record");
+            text.textContent += "You drank a potion and gained health! \r\n";
+            health += 50;
+            heals--;
         }
         else
         {
@@ -100,11 +100,9 @@ function turn(sbo)
         text.textContent += "You are facing a " +enemy+ " that has " + enHealth + " health out of a total of " + enHealthT +" \r\n";
         show();
         seen = true;
-        enemyAttack();
-        console.log("observe");
     }
-    wOl();
     update();
+    wOl();
 }
 
 function enemyAttack()
@@ -114,14 +112,30 @@ function enemyAttack()
         if(enemy == "Skeleton")
         {
             health = health - 10;
+            var text = document.getElementById("record");
+            text.textContent += "The Skeleton hit with a sword you for 10 Damage! \r\n";
         }
         else if(enemy == "Lich")
         {
+            var magic = Math.floor(Math.random() * 10)
+            if(magic == 9)
+            {
+                health = heath - 40;
+                var text = document.getElementById("record");
+            text.textContent += "The Lich hit you with a powerful Fireball for 40 damage! \r\n";
+            }
+            else
+            {
             health = health - 20;
+            var text = document.getElementById("record");
+            text.textContent += "The Lich hit you with a spell for 20 damage! \r\n";
+            }
         }
         else
         {
             health = health - 30;
+            var text = document.getElementById("record");
+            text.textContent += "The Dragon bit you for 30 Damage! \r\n";
         }
     }
     if(isBlocking == true)
@@ -129,14 +143,21 @@ function enemyAttack()
         if(enemy == "Skeleton")
         {
             shHealth = shHealth - 10;
+            var text = document.getElementById("record");
+            text.textContent += "The Skeleton damaged your shield! \r\n";
+            
         }
         else if(enemy == "Lich")
         {
             shHealth = shHealth - 10;
+            var text = document.getElementById("record");
+            text.textContent += "The Lich damaged your shield! \r\n";
         }
         else
         {
             shHealth = shHealth - 10;
+            var text = document.getElementById("record");
+            text.textContent += "The Dragon damaged your shield! \r\n";
         }
     }
     if(shHealth == 0)
@@ -184,6 +205,10 @@ function wOl()
         if(play)
         {
             health = 100;
+            heals = 3;
+            shHealth = 50;
+            damage = 20;
+            wins = 0;
             start();
             update();
         }
