@@ -3,6 +3,16 @@ body {
     text-align: center;
 }
 
+h1 {
+    color: red;
+    font-size: 30;
+    font-family: fantasy, 'Times New Roman', Times, serif;
+}
+
+p {
+    font-family: fantasy, 'Times New Roman', Times, serif;
+}
+
 #record {
     border: 1px solid black;
     text-align: left;
@@ -15,4 +25,12 @@ body {
 #enemyPic
 {
     text-align: left;
+}
+
+.center {
+    text-align: center;
+}
+
+#record {
+    font-family: fantasy,'Times New Roman', Times, serif
 }

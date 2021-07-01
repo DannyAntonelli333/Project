@@ -28,6 +28,7 @@
             <div class="col-sm-2">
                 <h3>VS</h3>
             </div>
+            <!--Enemy Pic, replaced for each-->
             <div class="col-sm-5">
                 <pre id="enemyPic">
                 </pre>
@@ -37,21 +38,27 @@
         <!--Health-->
         <div class="row spacer">
             <div class="col-sm-1"> </div>
+            <!--Health, updates-->
             <div class="col-sm-4" id="health">100/100</div>
             <div class="col-sm-1"> </div>
+            <!--Enemy Health, updates after observe-->
             <div class="col-sm-4" id="enHealth">????</div>
         </div>
         <!--Buttons and Respons-->
         <div class="row spacer">
+            <!--Attack-->
             <div class="col-sm-3">
                 <div class="btn btn-danger btn-lg" id="attack">Attack</div>
             </div>
+            <!--Block-->
             <div class="col-sm-3">
                 <div class="btn btn-secondary btn-lg" id="block">Block</div>
             </div>
+            <!--Heal-->
             <div class="col-sm-3">
                 <div class="btn btn-success btn-lg" id="heal">Potion</div>
             </div>
+            <!--Observe-->
             <div class="col-sm-3">
                 <div class="btn btn-info btn-lg" id="observe">Observe</div>
             </div>
@@ -72,7 +79,7 @@
             <div class="col-sm-8"><pre id="record"></pre></div>
             <div class="col-sm-2"> </div>
         </div>
-        <!--Win-->
+        <!--Win, only appears at end-->
         <div class="row spacer">
             <div class="col-sm-4"> </div>
             <div class="col-sm-4" id="win"></div>
@@ -81,15 +88,19 @@
     </div>
     <script src="logic.js"></script>
     <script type="text/javascript">
+    //Attack button
         $("#attack").on("click", function(){
             turn("swing");
         });
+    //Block button
         $("#block").on("click", function(){
             turn("block");
         });
+    //Observe button
         $("#observe").on("click", function(){
             turn("observe");
         });
+    //Heal button
         $("#heal").on("click", function(){
             turn("heal");
         })

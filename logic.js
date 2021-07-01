@@ -1,3 +1,5 @@
+//Variables
+
 var health = 100;
 
 var shHealth = 50;
@@ -22,6 +24,7 @@ var wins = 0;
 
 var isBlocking = false;
 
+//Starts the game, with a new enemy.
 function start()
 {
     enemy = enemies[whichEn];
@@ -48,6 +51,7 @@ function start()
     update();
 }
 
+//Takes a turn, depends on which button was pressed.
 function turn(sbo)
 {
     if(sbo == "swing")
@@ -111,6 +115,7 @@ function turn(sbo)
     wOl();
 }
 
+//Enemy attacks, blocking or not is checked.
 function enemyAttack()
 {
     if(isBlocking == false)
@@ -123,19 +128,9 @@ function enemyAttack()
         }
         else if(enemy == "Lich")
         {
-            var magic = Math.floor(Math.random() * 10)
-            if(magic == 3)
-            {
-                health = heath - 40;
-                var text = document.getElementById("record");
-            text.textContent += "The Lich hit you with a powerful Fireball for 40 damage! \r\n";
-            }
-            else
-            {
             health = health - 20;
             var text = document.getElementById("record");
             text.textContent += "The Lich hit you with a spell for 20 damage! \r\n";
-            }
         }
         else
         {
@@ -177,6 +172,7 @@ function enemyAttack()
     }
 }
 
+//Checks win or lose. If 3 wins, activates the win button.
 function wOl()
 {
     var win = false;
@@ -189,7 +185,7 @@ function wOl()
         whichEn++;
         if(wins == 3)
         {
-            $("#win").html("<a href=\"win.html\">You Win!</a>");
+            $("#win").html("<a href=\"win.html\" class=\"btn btn-warning btn-lg\">You Win!</a>");
         }
         else
         {
@@ -222,6 +218,7 @@ function wOl()
     
 }
 
+//Shows the enemy if observed.
 function show()
 {
     var enP = document.getElementById("enemyPic");
@@ -276,6 +273,7 @@ function show()
     }
 }
 
+//Updates the screen to match results.
 function update()
 {
     var he = document.getElementById("health");
@@ -295,5 +293,5 @@ function update()
     }
 }
 
-
+//Function to start when page loads.
 start();
