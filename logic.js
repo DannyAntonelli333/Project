@@ -2,9 +2,9 @@ var health = 100;
 
 var shHealth = 50;
 
-var damage = 20;
+var damage = 15;
 
-var heals = 3;
+var heals = 2;
 
 var enemies = ["Skeleton", "Lich", "Dragon"];
 
@@ -28,12 +28,12 @@ function start()
 
     if(enemy == "Skeleton")
     {
-        enHealthT = 80;
+        enHealthT = 90;
         enHealth = enHealthT
     }
     else if(enemy == "Lich")
     {
-        enHealthT = 50;
+        enHealthT = 100;
         enHealth = enHealthT
     }
     else
@@ -45,6 +45,7 @@ function start()
         en.textContent = "";
 
     seen = false;
+    update();
 }
 
 function turn(sbo)
@@ -85,7 +86,12 @@ function turn(sbo)
         {
             var text = document.getElementById("record");
             text.textContent += "You drank a potion and gained health! \r\n";
-            health += 50;
+            text.textContent += "You have "+heals +" potions remaining. \r\n";
+            health += 40;
+            if(health > 100)
+            {
+                health = 100;
+            }
             heals--;
         }
         else
@@ -118,7 +124,7 @@ function enemyAttack()
         else if(enemy == "Lich")
         {
             var magic = Math.floor(Math.random() * 10)
-            if(magic == 9)
+            if(magic == 3)
             {
                 health = heath - 40;
                 var text = document.getElementById("record");
@@ -145,6 +151,7 @@ function enemyAttack()
             shHealth = shHealth - 10;
             var text = document.getElementById("record");
             text.textContent += "The Skeleton damaged your shield! \r\n";
+            text.textContent += "Your shield has " + shHealth + " health remaining. \r\n";
             
         }
         else if(enemy == "Lich")
@@ -152,12 +159,14 @@ function enemyAttack()
             shHealth = shHealth - 10;
             var text = document.getElementById("record");
             text.textContent += "The Lich damaged your shield! \r\n";
+            text.textContent += "Your shield has " + shHealth + " health remaining. \r\n";
         }
         else
         {
             shHealth = shHealth - 10;
             var text = document.getElementById("record");
             text.textContent += "The Dragon damaged your shield! \r\n";
+            text.textContent += "Your shield has " + shHealth + " health remaining. \r\n";
         }
     }
     if(shHealth == 0)
@@ -184,16 +193,14 @@ function wOl()
         }
         else
         {
-            var play = confirm("Continue on to the next fight?");
-            if(play)
-            {
+            var text = document.getElementById("record");
+            text.textContent += "You beat the "+ enemy+ ". Congradulations! \r\n";
                 start();
                 heals++;
-                damage += 10;
+                damage += 5;
                 shHealth += 20;
                 var text = document.getElementById("record");
                 text.textContent += "Your sword and shield are upgraded, and you found another potion! \r\n";
-            }
         }
     }
     else if(health <= 0)
@@ -201,9 +208,9 @@ function wOl()
         loss = true;
         alert("You Lost!");
         whichEn = 0;
-        var play = confirm("Play again?");
-        if(play)
-        {
+        alert("Restarting...");
+        var text = document.getElementById("record");
+            text.textContent = "";
             health = 100;
             heals = 3;
             shHealth = 50;
@@ -211,7 +218,6 @@ function wOl()
             wins = 0;
             start();
             update();
-        }
     }
     
 }
