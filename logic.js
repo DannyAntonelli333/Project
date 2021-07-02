@@ -279,6 +279,7 @@ function update()
     var he = document.getElementById("health");
     he.textContent = health + "/100";
 
+    //reveals the enemies health if it has been observed, otherwise it hides it.
     if(seen)
     {
         var enH = document.getElementById("enHealth");
